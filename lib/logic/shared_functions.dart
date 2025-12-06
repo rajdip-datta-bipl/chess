@@ -11,19 +11,11 @@ int tileToCol(int tile) {
 }
 
 double getXFromTile(int tile, double tileSize, AppModel appModel) {
-  return appModel.flip &&
-          appModel.playingWithAI &&
-          appModel.playerSide == Player.player2
-      ? (7 - tileToCol(tile)) * tileSize
-      : tileToCol(tile) * tileSize;
+  return tileToCol(tile) * tileSize;
 }
 
 double getYFromTile(int tile, double tileSize, AppModel appModel) {
-  return appModel.flip &&
-          appModel.playingWithAI &&
-          appModel.playerSide == Player.player2
-      ? (7 - tileToRow(tile)) * tileSize
-      : tileToRow(tile) * tileSize;
+  return tileToRow(tile) * tileSize;
 }
 
 Player oppositePlayer(Player player) {

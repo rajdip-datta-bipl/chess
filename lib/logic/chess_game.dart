@@ -1,4 +1,5 @@
 import 'package:async/async.dart';
+import 'dart:math';
 import 'package:en_passant/logic/chess_piece_sprite.dart';
 import 'package:en_passant/logic/move_calculation/ai_move_calculation.dart';
 import 'package:en_passant/logic/move_calculation/move_calculation.dart';
@@ -28,6 +29,11 @@ class ChessGame extends FlameGame with TapCallbacks {
   ChessPiece? selectedPiece;
   int? checkHintTile;
   Move? latestMove;
+  double currentRotation = 0;
+  double targetRotation = 0;
+  double startRotation = 0;
+  double animationProgress = 1.0;
+  final double animationDuration = 0.6; // 600ms
 
   ChessGame(this.appModel, this.context) {
     width = MediaQuery.of(context).size.width - 68;
@@ -70,6 +76,7 @@ class ChessGame extends FlameGame with TapCallbacks {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
+
     _drawBoard(canvas);
     if (appModel.showHints) {
       _drawCheckHint(canvas);
@@ -85,6 +92,38 @@ class ChessGame extends FlameGame with TapCallbacks {
   @override
   void update(double t) {
     super.update(t);
+
+    double newTargetRotation = 0;
+    if (appModel.flip &&
+        ((appModel.playingWithAI && appModel.playerSide == Player.player2) ||
+            (!appModel.playingWithAI && appModel.turn == Player.player2))) {
+      newTargetRotation = pi;
+    } else {
+      newTargetRotation = 0;
+    }
+
+    if (newTargetRotation != targetRotation) {
+      targetRotation = newTargetRotation;
+      startRotation = currentRotation;
+      animationProgress = 0;
+    }
+
+    if (animationProgress < 1.0) {
+      animationProgress += t / animationDuration;
+      if (animationProgress > 1.0) animationProgress = 1.0;
+
+      // Parametric easeInOutCubic equivalent to match Curves.easeInOut roughly
+      // t < 0.5 ? 4 * t * t * t : 1 - pow(-2 * t + 2, 3) / 2
+      double curviness = animationProgress < 0.5
+          ? 4 * animationProgress * animationProgress * animationProgress
+          : 1 - pow(-2 * animationProgress + 2, 3) / 2;
+
+      currentRotation =
+          startRotation + (targetRotation - startRotation) * curviness;
+    } else {
+      currentRotation = targetRotation;
+    }
+
     for (var piece in board.player1Pieces + board.player2Pieces) {
       spriteMap[piece]?.update(tileSize ?? 0, appModel, piece);
     }
@@ -206,7 +245,7 @@ class ChessGame extends FlameGame with TapCallbacks {
     bool undoing = false,
     bool changeTurn = true,
     bool updateMetaList = true,
-  }) {
+  }) async {
     if (clearRedo) {
       board.redoStack = [];
     }
@@ -234,6 +273,7 @@ class ChessGame extends FlameGame with TapCallbacks {
       appModel.pushMoveMeta(meta);
     }
     if (changeTurn) {
+      await Future.delayed(Duration(milliseconds: 300));
       appModel.changeTurn();
     }
     selectedPiece = null;
@@ -243,15 +283,8 @@ class ChessGame extends FlameGame with TapCallbacks {
   }
 
   int _vector2ToTile(Vector2 vector2) {
-    if (appModel.flip &&
-        appModel.playingWithAI &&
-        appModel.playerSide == Player.player2) {
-      return (7 - (vector2.y / (tileSize ?? 0)).floor()) * 8 +
-          (7 - (vector2.x / (tileSize ?? 0)).floor());
-    } else {
-      return (vector2.y / (tileSize ?? 0)).floor() * 8 +
-          (vector2.x / (tileSize ?? 0)).floor();
-    }
+    return (vector2.y / (tileSize ?? 0)).floor() * 8 +
+        (vector2.x / (tileSize ?? 0)).floor();
   }
 
   void _drawBoard(Canvas canvas) {
@@ -273,14 +306,22 @@ class ChessGame extends FlameGame with TapCallbacks {
 
   void _drawPieces(Canvas canvas) {
     for (var piece in board.player1Pieces + board.player2Pieces) {
+      double x = (spriteMap[piece]?.spriteX ?? 0) + 5;
+      double y = (spriteMap[piece]?.spriteY ?? 0) + 5;
+      double size = (tileSize ?? 0) - 10;
+
+      canvas.save();
+      // Rotate piece around its center
+      canvas.translate(x + size / 2, y + size / 2);
+      canvas.rotate(-currentRotation);
+      canvas.translate(-(x + size / 2), -(y + size / 2));
+
       spriteMap[piece]?.sprite?.render(
             canvas,
-            size: Vector2((tileSize ?? 0) - 10, (tileSize ?? 0) - 10),
-            position: Vector2(
-              (spriteMap[piece]?.spriteX ?? 0) + 5,
-              (spriteMap[piece]?.spriteY ?? 0) + 5,
-            ),
+            size: Vector2(size, size),
+            position: Vector2(x, y),
           );
+      canvas.restore();
     }
   }
 

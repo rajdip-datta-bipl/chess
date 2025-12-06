@@ -15,6 +15,11 @@ class Toggles extends StatelessWidget {
     return Column(
       children: [
         Toggle(
+          'Board Flip (2P)',
+          toggle: appModel.flip,
+          setFunc: appModel.setFlipBoard,
+        ),
+        Toggle(
           'Show Hints',
           toggle: appModel.showHints,
           setFunc: appModel.setShowHints,
