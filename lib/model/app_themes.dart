@@ -9,6 +9,7 @@ class AppTheme {
   Color checkHint;
   Color latestMove;
   Color border;
+  Color notation;
 
   AppTheme({
     this.name,
@@ -19,6 +20,7 @@ class AppTheme {
     this.latestMove = const Color(0xccc47937),
     this.checkHint = const Color(0x88ff0000),
     this.border = const Color(0xffffffff),
+    this.notation = const Color(0xFFE0E0E0),
   });
 }
 
@@ -39,6 +41,7 @@ List<AppTheme> get themeList {
       moveHint: Color(0xdd555555),
       checkHint: Color(0xff333333),
       latestMove: Color(0xdddddddd),
+      notation: Color(0xFFFFFFFF),
     ),
     AppTheme(
       name: 'Dark',
@@ -53,6 +56,7 @@ List<AppTheme> get themeList {
       lightTile: Color(0xff444444),
       darkTile: Color(0xff333333),
       border: Color(0xff555555),
+      notation: Color(0xFFCCCCCC),
     ),
     AppTheme(
       name: 'Amoled',
@@ -67,6 +71,7 @@ List<AppTheme> get themeList {
       lightTile: Color(0xff444444),
       darkTile: Color(0xff333333),
       border: Color(0xff555555),
+      notation: Color(0xFFCCCCCC),
     ),
     AppTheme(
       name: 'Lewis',
@@ -83,6 +88,7 @@ List<AppTheme> get themeList {
       moveHint: Color(0xdd800b0b),
       latestMove: Color(0xddcc9c6c),
       border: Color(0xffbdaa8c),
+      notation: Color(0xFFE0C0A0),
     ),
     AppTheme(
       name: 'Cherry Funk',
@@ -99,6 +105,7 @@ List<AppTheme> get themeList {
       moveHint: Color(0xaabdacce),
       latestMove: Color(0xaaf0b35d),
       border: Color(0xff434783),
+      notation: Color(0xFFFFFFFF),
     ),
     AppTheme(
       name: 'Sage',
@@ -115,6 +122,7 @@ List<AppTheme> get themeList {
       moveHint: Color(0xaa45a881),
       latestMove: Color(0xaa2782b0),
       border: Color(0xFF000000),
+      notation: Color(0xFFE0E0E0),
     ),
     AppTheme(
       name: 'Warm Tan',
@@ -131,6 +139,7 @@ List<AppTheme> get themeList {
       moveHint: Color(0xaa45a881),
       latestMove: Color(0xaa2782b0),
       border: Color(0xFF000000),
+      notation: Color(0xFF202020),
     ),
     AppTheme(
       name: 'Jargon Jade',
@@ -147,6 +156,7 @@ List<AppTheme> get themeList {
       moveHint: Color(0xaa45a881),
       latestMove: Color(0xaa2782b0),
       border: Color(0xFF000000),
+      notation: Color(0xFFD0F0E0),
     ),
   ];
   themeList.sort((a, b) => a.name?.compareTo(b.name ?? "") ?? 0);

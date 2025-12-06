@@ -15,14 +15,19 @@ class Toggles extends StatelessWidget {
     return Column(
       children: [
         Toggle(
-          'Board Flip (2P)',
-          toggle: appModel.flip,
-          setFunc: appModel.setFlipBoard,
+          'Board Rotation (2P)',
+          toggle: appModel.enableRotation,
+          setFunc: appModel.setEnableRotation,
         ),
         Toggle(
           'Show Hints',
           toggle: appModel.showHints,
           setFunc: appModel.setShowHints,
+        ),
+        Toggle(
+          'Show Notation',
+          toggle: appModel.showNotation,
+          setFunc: appModel.setShowNotation,
         ),
         Toggle(
           'Allow Undo/Redo',

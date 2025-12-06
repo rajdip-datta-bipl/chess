@@ -33,7 +33,8 @@ class AppModel extends ChangeNotifier {
   bool allowUndoRedo = true;
   bool soundEnabled = true;
   bool showHints = true;
-  bool flip = true;
+  bool showNotation = false;
+  bool enableRotation = true;
 
   ChessGame? game;
   Timer? timer;
@@ -243,10 +244,17 @@ class AppModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setFlipBoard(bool flip) async {
+  void setShowNotation(bool show) async {
     final prefs = await SharedPreferences.getInstance();
-    this.flip = flip;
-    prefs.setBool('flip', flip);
+    showNotation = show;
+    prefs.setBool('showNotation', show);
+    notifyListeners();
+  }
+
+  void setEnableRotation(bool enableRotation) async {
+    final prefs = await SharedPreferences.getInstance();
+    this.enableRotation = enableRotation;
+    prefs.setBool('enableRotation', enableRotation);
     notifyListeners();
   }
 
@@ -264,7 +272,8 @@ class AppModel extends ChangeNotifier {
     showMoveHistory = prefs.getBool('showMoveHistory') ?? true;
     soundEnabled = prefs.getBool('soundEnabled') ?? true;
     showHints = prefs.getBool('showHints') ?? true;
-    flip = prefs.getBool('flip') ?? true;
+    showNotation = prefs.getBool('showNotation') ?? false;
+    enableRotation = prefs.getBool('enableRotation') ?? true;
     allowUndoRedo = prefs.getBool('allowUndoRedo') ?? true;
     notifyListeners();
   }

@@ -33,7 +33,7 @@ class ChessGame extends FlameGame with TapCallbacks {
   double targetRotation = 0;
   double startRotation = 0;
   double animationProgress = 1.0;
-  final double animationDuration = 0.6; // 600ms
+  final double animationDuration = 0.6;
 
   ChessGame(this.appModel, this.context) {
     width = MediaQuery.of(context).size.width - 68;
@@ -94,7 +94,7 @@ class ChessGame extends FlameGame with TapCallbacks {
     super.update(t);
 
     double newTargetRotation = 0;
-    if (appModel.flip &&
+    if (appModel.enableRotation &&
         ((appModel.playingWithAI && appModel.playerSide == Player.player2) ||
             (!appModel.playingWithAI && appModel.turn == Player.player2))) {
       newTargetRotation = pi;
