@@ -8,7 +8,6 @@ A feature-rich chess application built with **Flutter** and **Flame** engine, of
 [![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?logo=dart)](https://dart.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-
 <a href='https://play.google.com/store/apps/details?id=com.shenmareparas.chess'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width='300px'/></a>
 
 ## ✨ Features
@@ -29,11 +28,12 @@ A feature-rich chess application built with **Flutter** and **Flame** engine, of
 
 ### 🎯 Gameplay Features
 
--   **Move History**: Track all moves throughout the game
+-   **Move History**: Track all moves throughout the game using Standard Algebraic Notation (SAN)
 -   **Undo/Redo**: Take back moves or replay them (configurable)
 -   **Move Hints**: Visual indicators for valid moves
+-   **Board Notation**: Algebraic notation (a-h, 1-8) coordinates on the board borders
 -   **Sound Effects**: Audio feedback for piece movements
--   **Board Flip**: Automatic board rotation based on turn
+-   **Board Rotation**: Automatic board rotation based on turn
 -   **Promotion Handling**: Full support for pawn promotion
 -   **Check Detection**: Visual indicators for check and checkmate
 -   **Stalemate Detection**: Proper game-end condition handling
@@ -157,7 +157,7 @@ The app stores user preferences locally using SharedPreferences:
 -   Move history visibility
 -   Sound settings
 -   Hint display settings
--   Board flip preference
+-   Board Rotation preference
 -   Undo/Redo availability
 
 ## 🎯 Usage
