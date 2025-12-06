@@ -9,7 +9,7 @@ class Move {
 
   @override
   bool operator ==(move) =>
-      this.from == (move as Move).from && (this as Move).to == move.to;
+      this.from == (move as Move).from && this.to == move.to;
   @override
   int get hashCode => super.hashCode;
 }

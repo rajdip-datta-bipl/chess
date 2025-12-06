@@ -15,7 +15,7 @@ import 'chess_board.dart';
 import 'chess_piece.dart';
 import 'move_calculation/move_classes/move.dart';
 
-class ChessGame extends Game with TapDetector {
+class ChessGame extends FlameGame with TapCallbacks {
   double? width;
   double? tileSize;
   AppModel appModel;
@@ -41,10 +41,9 @@ class ChessGame extends Game with TapDetector {
     }
   }
 
-  @override
-  void onTapDown(TapDownInfo details) {
+  void onTapDown(TapDownEvent event) {
     if (appModel.gameOver || !(appModel.isAIsTurn)) {
-      var tile = _vector2ToTile(details.eventPosition.widget);
+      var tile = _vector2ToTile(event.localPosition);
       var touchedPiece = board.tiles[tile];
       if (touchedPiece == selectedPiece) {
         validMoves = [];
@@ -70,6 +69,7 @@ class ChessGame extends Game with TapDetector {
 
   @override
   void render(Canvas canvas) {
+    super.render(canvas);
     _drawBoard(canvas);
     if (appModel.showHints) {
       _drawCheckHint(canvas);
@@ -84,6 +84,7 @@ class ChessGame extends Game with TapDetector {
 
   @override
   void update(double t) {
+    super.update(t);
     for (var piece in board.player1Pieces + board.player2Pieces) {
       spriteMap[piece]?.update(tileSize ?? 0, appModel, piece);
     }

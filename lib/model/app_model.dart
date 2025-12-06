@@ -259,7 +259,7 @@ class AppModel extends ChangeNotifier {
 
   void loadSharedPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    themeName = prefs.getString('themeName') ?? 'Green';
+    themeName = prefs.getString('themeName') ?? 'Jargon Jade';
     pieceTheme = prefs.getString('pieceTheme') ?? 'Classic';
     showMoveHistory = prefs.getBool('showMoveHistory') ?? true;
     soundEnabled = prefs.getBool('soundEnabled') ?? true;

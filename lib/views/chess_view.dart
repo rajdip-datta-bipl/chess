@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:en_passant/model/app_model.dart';
 import 'package:en_passant/views/components/chess_view/chess_board_widget.dart';
 import 'package:en_passant/views/components/chess_view/game_info_and_controls.dart';
@@ -33,8 +31,13 @@ class _ChessViewState extends State<ChessView> {
           WidgetsBinding.instance
               .addPostFrameCallback((_) => _showPromotionDialog(appModel));
         }
-        return WillPopScope(
-          onWillPop: _willPopCallback,
+        return PopScope(
+          canPop: true,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (didPop) {
+              appModel.exitChessView();
+            }
+          },
           child: Container(
             decoration: BoxDecoration(gradient: appModel.theme.background),
             padding: EdgeInsets.all(30),
@@ -62,11 +65,5 @@ class _ChessViewState extends State<ChessView> {
         return PromotionDialog(appModel);
       },
     );
-  }
-
-  Future<bool> _willPopCallback() async {
-    appModel.exitChessView();
-
-    return true;
   }
 }

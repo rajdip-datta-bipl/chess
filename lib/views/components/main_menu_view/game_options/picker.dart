@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../shared/text_variable.dart';
 
-class Picker<T> extends StatelessWidget {
+class Picker<T extends Object> extends StatelessWidget {
   final String? label;
   final Map<T, Text>? options;
   final T? selection;
