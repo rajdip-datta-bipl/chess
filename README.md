@@ -1,4 +1,4 @@
-<a href='https://play.google.com/store/apps/details?id=com.shenmareparas.chess'><img alt='Chess App Icon' src="https://github.com/shenmareparas/Chess/assets/112749923/54c38dbd-7a06-416e-8419-09f27654cbcd" width = 250/></a>
+<img alt='Chess App Icon' src="https://github.com/rajdip-datta-bipl/chess/blob/main/assets/icons/icon.png" width = 250/></a>
 
 # ♟️ AI Chess - Flutter Chess Game
 
@@ -8,7 +8,6 @@ A feature-rich chess application built with **Flutter** and **Flame** engine, of
 [![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?logo=dart)](https://dart.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-<a href='https://play.google.com/store/apps/details?id=com.shenmareparas.chess'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width='300px'/></a>
 
 ## ✨ Features
 
@@ -72,7 +71,7 @@ _Add your app screenshots here_
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/shenmareparas/Chess.git
+    git clone https://github.com/rajdip-datta-bipl/chess.git
     cd Chess
     ```
 
@@ -184,10 +183,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Paras Shenmare**
+**Rajdip Datta**
 
--   GitHub: [@shenmareparas](https://github.com/shenmareparas)
--   Google Play: [Download Chess](https://play.google.com/store/apps/details?id=com.shenmareparas.chess)
+-   GitHub: [@rajdip-datta-bipl](https://github.com/rajdip-datta-bipl)
+-   Google Play: [Download Chess](https://play.google.com/store/apps/details?id=com.rajdipdatta.chess)
 
 ## 🙏 Acknowledgments
 

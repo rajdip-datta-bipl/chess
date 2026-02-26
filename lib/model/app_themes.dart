@@ -158,6 +158,23 @@ List<AppTheme> get themeList {
       border: Color(0xFF000000),
       notation: Color(0xFFD0F0E0),
     ),
+    AppTheme(
+      name: 'Kings Chess',
+      background: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color.fromARGB(255, 241, 227, 189),
+          Color(0xFF000000),
+        ],
+      ),
+      lightTile: Color(0xFFFFFFFF),
+      darkTile: Color(0xFF977A64),
+      moveHint: Color.fromARGB(170, 238, 228, 93),
+      latestMove: Color.fromARGB(170, 247, 162, 5),
+      border: Color(0xFF000000),
+      notation: Color.fromARGB(255, 248, 85, 9),
+    ),
   ];
   themeList.sort((a, b) => a.name?.compareTo(b.name ?? "") ?? 0);
   return themeList;

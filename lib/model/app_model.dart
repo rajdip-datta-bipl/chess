@@ -18,7 +18,8 @@ const PIECE_THEMES = [
   'Letters',
   'Video Chess',
   'Lewis Chessmen',
-  'Mexico City'
+  'Mexico City',
+  'Kings Piece'
 ];
 
 class AppModel extends ChangeNotifier {
@@ -28,7 +29,7 @@ class AppModel extends ChangeNotifier {
   Player playerSide = Player.player1;
   int timeLimit = 0;
   String pieceTheme = 'Classic';
-  String themeName = 'Jargon Jade';
+  String themeName = 'Kings Chess';
   bool showMoveHistory = true;
   bool allowUndoRedo = true;
   bool soundEnabled = true;
@@ -267,7 +268,7 @@ class AppModel extends ChangeNotifier {
 
   void loadSharedPrefs() async {
     final prefs = await SharedPreferences.getInstance();
-    themeName = prefs.getString('themeName') ?? 'Jargon Jade';
+    themeName = prefs.getString('themeName') ?? 'Kings Chess';
     pieceTheme = prefs.getString('pieceTheme') ?? 'Classic';
     showMoveHistory = prefs.getBool('showMoveHistory') ?? true;
     soundEnabled = prefs.getBool('soundEnabled') ?? true;

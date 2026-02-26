@@ -11,6 +11,8 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flame/camera.dart';
+import 'package:flame/components.dart';
 
 import 'chess_board.dart';
 import 'chess_piece.dart';
@@ -18,6 +20,7 @@ import 'move_calculation/move_classes/move.dart';
 
 class ChessGame extends FlameGame with TapCallbacks {
   double? width;
+  double? height; // new
   double? tileSize;
   AppModel appModel;
   BuildContext context;
@@ -34,9 +37,19 @@ class ChessGame extends FlameGame with TapCallbacks {
   double startRotation = 0;
   double animationProgress = 1.0;
   final double animationDuration = 0.6;
+  late final CameraComponent cameraComponent;
+
+  @override
+  Color backgroundColor() => const Color(0x0054a286); // Example: A shade of green
 
   ChessGame(this.appModel, this.context) {
-    width = MediaQuery.of(context).size.width - 68;
+    
+    width = MediaQuery.of(context).size.width - 72; //68
+    //height = MediaQuery.of(context).size.width - 68; // new
+    
+    //width = 295;
+    //height = 295;
+    
     tileSize = (width ?? 0) / 8;
     for (var piece in board.player1Pieces + board.player2Pieces) {
       spriteMap[piece] = ChessPieceSprite(piece, appModel.pieceTheme);
@@ -46,6 +59,62 @@ class ChessGame extends FlameGame with TapCallbacks {
       _aiMove();
     }
   }
+
+/*
+  @override
+  Future<void> onLoad() async {
+    final Vector2 gameSize = Vector2(300, 300);
+
+    // 1️⃣ Create world
+    world = World();
+    add(world);
+
+    // 2️⃣ Create camera and ATTACH WORLD
+    cameraComponent = CameraComponent(
+      world: world,
+      viewport: FixedResolutionViewport(
+        resolution: gameSize,
+      ),
+    );
+    add(cameraComponent);
+
+    // 🔴 CENTER THE CAMERA (THIS IS THE MISSING STEP)
+    cameraComponent.viewfinder.position = gameSize / 2;
+    cameraComponent.viewfinder.anchor = Anchor.center;
+
+    // 3️⃣ Add a visible test component to the WORLD
+    world.add(
+      RectangleComponent(
+        size: Vector2(20, 20),
+        paint: Paint()..color = const Color(0xFFFF0000),
+        position: gameSize / 2,
+        anchor: Anchor.center,
+      ),
+    );
+    
+  }
+
+  @override
+  void onMount() {
+    super.onMount();
+
+    // 🔴 canvasSize IS VALID HERE
+    final Vector2 size = canvasSize;
+
+    cameraComponent.viewport = FixedResolutionViewport(
+      resolution: size,
+    );
+
+    cameraComponent.viewfinder
+      ..position = size / 2
+      ..anchor = Anchor.center;
+
+    // Center test square once
+    for (final c in world.children.whereType<PositionComponent>()) {
+      c.position = size / 2;
+    }
+  }
+*/
 
   void onTapDown(TapDownEvent event) {
     if (appModel.gameOver || !(appModel.isAIsTurn)) {

@@ -22,33 +22,53 @@ class ChessBoardWidget extends StatelessWidget {
               : 0,
           duration: Duration(milliseconds: 600),
           curve: Curves.easeInOut,
+          
           child: Container(
             decoration: appModel.theme.name != 'Video Chess'
                 ? BoxDecoration(
+                  //borderRadius: BorderRadius.circular(16),
+                  /*
                     border: Border.all(
                       color: appModel.theme.border,
                       width: 4,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
+                    ),                   
+                    
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 10,
                         color: Color(0x88000000),
                       ),
                     ],
+                    */
                   )
                 : BoxDecoration(),
-            child: ClipRRect(
+
+            //child: ClipRRect(
+              /*
               borderRadius: appModel.theme.name != 'Video Chess'
                   ? BorderRadius.circular(4)
                   : BorderRadius.zero,
-              child: Container(
-                width: MediaQuery.of(context).size.width - 68,
-                height: MediaQuery.of(context).size.width - 68,
-                child: GameWidget(game: appModel.game!),
+              */
+              
+              child: SizedBox(
+                //alignment: Alignment.center,
+                //constraints: const BoxConstraints(maxWidth: 360, maxHeight: 360),
+                //color: Color(0xFFD9BEA9), // A beige color
+                //padding: const EdgeInsets.all(10.0),
+                width: MediaQuery.of(context).size.width - 65, // 68
+                height: MediaQuery.of(context).size.width - 65, // 68
+                
+                //width: 300,
+                //height: 300,
+
+                //child: Center(
+                  child: GameWidget(game: appModel.game!),                         
+                //),
+                
               ),
-            ),
+            //),
           ),
+          
         ),
         if (appModel.showNotation)
           Container(
@@ -122,7 +142,7 @@ class _NotationOverlayState extends State<_NotationOverlay> {
             // Files (Letters)
             for (int i = 0; i < 8; i++)
               Positioned(
-                left: (i * (MediaQuery.of(context).size.width - 68) / 8),
+                left: (i * (MediaQuery.of(context).size.width -648) / 8),
                 bottom: 1,
                 width: (MediaQuery.of(context).size.width - 68) / 8,
                 child: Text(

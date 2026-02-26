@@ -40,12 +40,32 @@ class _ChessViewState extends State<ChessView> {
           },
           child: Container(
             decoration: BoxDecoration(gradient: appModel.theme.background),
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.all(10),
             child: Column(
               children: [
                 Spacer(),
-                ChessBoardWidget(appModel),
-                SizedBox(height: 30),
+                
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10,15,10,18),
+                  //color: Color(0xFF4CAF50),
+                  decoration: const BoxDecoration(
+                  // Specify the image
+                  image: DecorationImage(
+                    // Use AssetImage for local assets
+                    image: AssetImage('assets/images/board_bg.png'),
+                    // Adjust the fit property to control how the image scales
+                    fit: BoxFit.cover, 
+                  ),
+                  // Optional: Add rounded corners
+                  //borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                  ),
+                  child: Center(
+                    child: ChessBoardWidget(appModel),
+                  ),
+                ),
+                
+                //ChessBoardWidget(appModel),
+                SizedBox(height: 20),
                 GameStatus(),
                 Spacer(),
                 GameInfoAndControls(appModel),
