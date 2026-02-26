@@ -184,7 +184,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Paras Shenmare**
+**rajdipdatta**
 
 -   GitHub: [@shenmareparas](https://github.com/shenmareparas)
 -   Google Play: [Download Chess](https://play.google.com/store/apps/details?id=com.shenmareparas.chess)
